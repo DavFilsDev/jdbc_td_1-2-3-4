@@ -2,7 +2,7 @@ package restaurantManagement;
 
 public class Main {
     public static void main(String[] args) {
-        com.restaurantManagement.DataRetriever dataRetriever = new com.restaurantManagement.DataRetriever();
+        restaurantManagement.DataRetriever dataRetriever = new restaurantManagement.DataRetriever();
 
         System.out.println("=== TEST 1 : Récupération de plats et calcul de marge ===");
         System.out.println();
