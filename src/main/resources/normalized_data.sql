@@ -20,3 +20,8 @@ VALUES
     (3, 2, 3, 1.00, 'KG'),
     (4, 4, 4, 0.30, 'KG'),
     (5, 4, 5, 0.20, 'KG');
+
+--update the data inside the dish (change the value of the new price)
+UPDATE dish SET price = 3500.00 WHERE id = 1 AND name = 'Salade fraîche';
+UPDATE dish SET price = 12000.00 WHERE id = 2 AND name = 'Poulet grillé';
+UPDATE dish SET price = 8000.00 WHERE id = 4 AND name = 'Gâteau au chocolat';
