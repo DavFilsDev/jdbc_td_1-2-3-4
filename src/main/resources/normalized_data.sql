@@ -25,3 +25,6 @@ VALUES
 UPDATE dish SET price = 3500.00 WHERE id = 1 AND name = 'Salade fraîche';
 UPDATE dish SET price = 12000.00 WHERE id = 2 AND name = 'Poulet grillé';
 UPDATE dish SET price = 8000.00 WHERE id = 4 AND name = 'Gâteau au chocolat';
+
+--rename the column price into selling_price in the dish table
+ALTER TABLE dish RENAME COLUMN price TO selling_price;
