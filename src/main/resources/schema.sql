@@ -1,6 +1,5 @@
 create type dish_type as enum ('STARTER', 'MAIN', 'DESSERT');
 
-
 create table dish
 (
     id        serial primary key,
@@ -18,3 +17,6 @@ create table ingredient
     category ingredient_category,
     id_dish  int references dish (id)
 );
+
+--update the value of the dish_type STARTER into START
+ALTER TYPE dish_type RENAME VALUE 'STARTER' TO 'START';
