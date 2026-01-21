@@ -18,6 +18,3 @@ create table ingredient
     category ingredient_category,
     id_dish  int references dish (id)
 );
-
-alter table ingredient
-    add column if not exists required_quantity numeric(10, 2);
