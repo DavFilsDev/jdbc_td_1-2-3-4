@@ -32,3 +32,7 @@ ALTER TABLE dish RENAME COLUMN price TO selling_price;
 -- remove the constraint of the price column into dish to add a new constraint to make a default value NULL
 ALTER TABLE dish
     DROP CONSTRAINT IF EXISTS dish_price_check;
+
+-- add the new constraint to price column into dish
+ALTER TABLE dish
+    ADD CONSTRAINT dish_price_check CHECK (price IS NULL OR price >= 0);
