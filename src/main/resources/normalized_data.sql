@@ -36,3 +36,6 @@ ALTER TABLE dish
 -- add the new constraint to price column into dish
 ALTER TABLE dish
     ADD CONSTRAINT dish_price_check CHECK (price IS NULL OR price >= 0);
+
+-- Set price to NULL for dishes without price (id 3 and 5)
+UPDATE dish SET price = NULL WHERE id IN (3, 5);
