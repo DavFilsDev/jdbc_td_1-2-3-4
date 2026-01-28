@@ -10,7 +10,7 @@ public class Ingredient {
     private final double price;
     private final CategoryEnum category;
     private Double quantity;
-    private List<StockMovement> stockMovementList;
+    private List<StockMouvement> stockMouvementList;
 
     public Ingredient(int id, String name, double price, CategoryEnum category) {
         this.id = id;
@@ -43,12 +43,12 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
-    public List<StockMovement> getStockMovementList() {
-        return stockMovementList;
+    public List<StockMouvement> getStockMovementList() {
+        return stockMouvementList;
     }
 
-    public void setStockMovementList(List<StockMovement> stockMovementList) {
-        this.stockMovementList = stockMovementList;
+    public void setStockMovementList(List<StockMouvement> stockMouvementList) {
+        this.stockMouvementList = stockMouvementList;
     }
 
     public StockValue getStockValueAt(Instant instant) {
@@ -56,14 +56,14 @@ public class Ingredient {
             throw new IllegalArgumentException("instant must not be null");
         }
 
-        if (stockMovementList == null || stockMovementList.isEmpty()) {
+        if (stockMouvementList == null || stockMouvementList.isEmpty()) {
             return new StockValue(0.0, Unit.KG);
         }
 
         double totalQuantity = 0.0;
         Unit unit = null;
 
-        for (StockMovement movement : stockMovementList) {
+        for (StockMouvement movement : stockMouvementList) {
             if (movement == null) {
                 continue;
             }

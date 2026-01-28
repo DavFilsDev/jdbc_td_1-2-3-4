@@ -1,5 +1,5 @@
 
-CREATE TYPE ingredient_category AS ENUM (
+CREATE TYPE category AS ENUM (
     'VEGETABLE',
     'ANIMAL',
     'MARINE',
@@ -23,7 +23,7 @@ CREATE TABLE ingredient (
                             id SERIAL CONSTRAINT ingredient_pk PRIMARY KEY,
                             name VARCHAR(255) NOT NULL,
                             price NUMERIC(10,2) NOT NULL,
-                            category ingredient_category NOT NULL,
+                            category category NOT NULL,
                             id_dish INT,
                             CONSTRAINT fk_dish
                                 FOREIGN KEY (id_dish)

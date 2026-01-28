@@ -619,7 +619,7 @@ public class DataRetriever {
             }
         }
 
-        List<StockMovement> movements = new ArrayList<>();
+        List<StockMouvement> movements = new ArrayList<>();
 
         try (PreparedStatement ps =
                      conn.prepareStatement(
@@ -630,8 +630,8 @@ public class DataRetriever {
                 while (rs.next()) {
                     StockValue value =
                             new StockValue(rs.getDouble("quantity"), Unit.valueOf(rs.getString("unit")));
-                    StockMovement movement =
-                            new StockMovement(
+                    StockMouvement movement =
+                            new StockMouvement(
                                     rs.getInt("id"),
                                     value,
                                     MovementTypeEnum.valueOf(rs.getString("type")),
@@ -793,7 +793,7 @@ public class DataRetriever {
         throw new RuntimeException("Failed to save ingredient: " + toSave.getName());
     }
 
-    private void saveStockMovements(Connection conn, int ingredientId, List<StockMovement> movements)
+    private void saveStockMovements(Connection conn, int ingredientId, List<StockMouvement> movements)
             throws SQLException {
         String insertWithId =
                 """
@@ -811,7 +811,7 @@ public class DataRetriever {
         try (PreparedStatement psWithId = conn.prepareStatement(insertWithId);
              PreparedStatement psWithoutId = conn.prepareStatement(insertWithoutId)) {
 
-            for (StockMovement movement : movements) {
+            for (StockMouvement movement : movements) {
                 StockValue value = movement.getValue();
 
                 if (movement.getId() > 0) {

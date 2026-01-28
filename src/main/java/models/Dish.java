@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Dish {
-    private final int id;
-    private final String name;
-    private final DishTypeEnum dishType;
+    private final int id;  // td1
+    private final String name; // td1
+    private final DishTypeEnum dishType; // td1
     private Double price;
     private final List<DishIngredient> dishIngredients;
 

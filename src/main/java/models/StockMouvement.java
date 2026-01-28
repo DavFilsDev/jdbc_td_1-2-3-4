@@ -2,14 +2,14 @@ package models;
 
 import java.time.Instant;
 
-public class StockMovement {
+public class StockMouvement {
 
     private final int id;
     private final StockValue value;
     private final MovementTypeEnum type;
     private final Instant creationDateTime;
 
-    public StockMovement(int id, StockValue value, MovementTypeEnum type, Instant creationDateTime) {
+    public StockMouvement(int id, StockValue value, MovementTypeEnum type, Instant creationDateTime) {
         this.id = id;
         this.value = value;
         this.type = type;
