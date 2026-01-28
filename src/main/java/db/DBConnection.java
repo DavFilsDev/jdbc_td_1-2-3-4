@@ -1,7 +1,6 @@
-package config;
+package db;
 
 import io.github.cdimascio.dotenv.Dotenv;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,12 +10,12 @@ public class DBConnection {
     private final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     private final String JDBC_URL = dotenv.get("JDBC_URL");
-    private final String DB_USER = dotenv.get("DB_USER");
+    private final String USERNAME = dotenv.get("USERNAME");
     private final String PASSWORD = dotenv.get("PASSWORD");
 
-    public Connection getDBConnection()  {
+    public Connection getDBConnection() {
         try {
-            return DriverManager.getConnection(JDBC_URL, DB_USER, PASSWORD);
+            return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             throw new RuntimeException("Unable to connect to database", e);
         }
@@ -31,5 +30,4 @@ public class DBConnection {
             }
         }
     }
-
 }
