@@ -1,22 +1,32 @@
-create type dish_type as enum ('STARTER', 'MAIN', 'DESSERT');
 
-create table dish
-(
-    id        serial primary key,
-    name      varchar(255),
-    dish_type dish_type
+CREATE TYPE ingredient_category AS ENUM (
+    'VEGETABLE',
+    'ANIMAL',
+    'MARINE',
+    'DAIRY',
+    'OTHER'
 );
 
-create type ingredient_category as enum ('VEGETABLE', 'ANIMAL', 'MARINE', 'DAIRY', 'OTHER');
-
-create table ingredient
-(
-    id       serial primary key,
-    name     varchar(255),
-    price    numeric(10, 2),
-    category ingredient_category,
-    id_dish  int references dish (id)
+CREATE TYPE dish_type AS ENUM (
+    'START',
+    'MAIN',
+    'DESSERT'
 );
 
---update the value of the dish_type STARTER into START
-ALTER TYPE dish_type RENAME VALUE 'STARTER' TO 'START';
+CREATE TABLE dish (
+                      id SERIAL CONSTRAINT dish_pk PRIMARY KEY,
+                      name VARCHAR(255) NOT NULL,
+                      dish_type dish_type NOT NULL
+);
+
+CREATE TABLE ingredient (
+                            id SERIAL CONSTRAINT ingredient_pk PRIMARY KEY,
+                            name VARCHAR(255) NOT NULL,
+                            price NUMERIC(10,2) NOT NULL,
+                            category ingredient_category NOT NULL,
+                            id_dish INT,
+                            CONSTRAINT fk_dish
+                                FOREIGN KEY (id_dish)
+                                    REFERENCES dish(id)
+                                    ON DELETE SET NULL
+);
