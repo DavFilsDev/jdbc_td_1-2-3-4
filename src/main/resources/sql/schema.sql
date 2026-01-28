@@ -1,4 +1,4 @@
-CREATE TYPE category AS ENUM (
+create type category as enum (
     'VEGETABLE',
     'ANIMAL',
     'MARINE',
@@ -6,23 +6,23 @@ CREATE TYPE category AS ENUM (
     'OTHER'
 );
 
-CREATE TYPE dish_type AS ENUM (
+create type dish_type as enum (
     'START',
     'MAIN',
     'DESSERT'
 );
 
-CREATE TABLE dish (
-    id SERIAL CONSTRAINT dish_pk PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    dish_type dish_type NOT NULL
+create table dish (
+    id serial constraint dish_pk primary key,
+    name varchar(255) not null,
+    dish_type dish_type not null
 );
 
-CREATE TABLE ingredient (
-    id SERIAL CONSTRAINT ingredient_pk PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    price NUMERIC(10,2) NOT NULL,
-    category category NOT NULL,
-    id_dish INT,
-    CONSTRAINT fk_dish FOREIGN KEY (id_dish) REFERENCES dish(id) ON DELETE SET NULL
+create table ingredient (
+    id serial constraint ingredient_pk primary key,
+    name varchar(255) not null,
+    price numeric(10,2) not null ,
+    category category not null ,
+    id_dish int,
+    constraint fk_dish foreign key (id_dish) references dish(id) on delete set null
 );
