@@ -343,6 +343,29 @@ public class DataRetriever {
     public Order saveOrder(Order orderToSave) {
         List<DishOrder> dishOrders = validateOrder(orderToSave);
 
+        // Vérifier que la table est spécifiée
+        TableOrder tableOrder = orderToSave.getTableOrder();
+        if (tableOrder == null || tableOrder.getTable() == null) {
+            throw new IllegalArgumentException("Table must be specified for the order");
+        }
+
+        Table table = tableOrder.getTable();
+        Instant arrival = tableOrder.getArrivalDateTime();
+        Instant departure = tableOrder.getDepartureDateTime();
+
+        if (arrival == null || departure == null) {
+            throw new IllegalArgumentException("Arrival and departure datetime must be specified");
+        }
+
+        if (arrival.isAfter(departure)) {
+            throw new IllegalArgumentException("Arrival datetime must be before departure datetime");
+        }
+
+        // PARTIE 1 : Vérification simple
+        if (!isTableAvailable(table.getId(), arrival, departure)) {
+            throw new RuntimeException("Table " + table.getNumber() + " is not available");
+        }
+
         Connection conn = dbConnection.getDBConnection();
 
         try {
@@ -891,6 +914,25 @@ public class DataRetriever {
                 availableTables.add(rs.getInt("id"));
             }
             return availableTables;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            dbConnection.close(connection);
+        }
+    }
+
+    public Table findTableById(int id) {
+        String sql = "SELECT id, number FROM restaurant_table WHERE id = ?";
+        Connection connection = dbConnection.getDBConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Table(rs.getInt("id"), rs.getInt("number"));
+            }
+            throw new RuntimeException("Table not found (id=" + id + ")");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
