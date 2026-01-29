@@ -1,4 +1,3 @@
-// TestRestaurantTables.java
 import models.*;
 import db.DBConnection;
 import services.DataRetriever;
