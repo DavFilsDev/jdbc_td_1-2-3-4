@@ -21,8 +21,8 @@ create table dish (
 create table ingredient (
     id serial constraint ingredient_pk primary key,
     name varchar(255) not null,
-    price numeric(10,2) not null ,
-    category category not null ,
+    price numeric(10,2) not null,
+    category category not null,
     id_dish int,
     constraint fk_dish foreign key (id_dish) references dish(id) on delete set null
 );
