@@ -874,8 +874,7 @@ public class DataRetriever {
         throw new RuntimeException(errorMessage);
     }
 
-    private Dish mapDish(
-            ResultSet rs, String idColumn, String nameColumn, String typeColumn, String priceColumn)
+    private Dish mapDish(ResultSet rs, String idColumn, String nameColumn, String typeColumn, String priceColumn)
             throws SQLException {
         return new Dish(
                 rs.getInt(idColumn),

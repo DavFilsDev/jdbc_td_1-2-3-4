@@ -20,8 +20,12 @@ INSERT INTO dish_ingredient (id, id_dish, id_ingredient, quantity_required, unit
                                                                                       (4, 4, 4, 0.30, 'KG'),
                                                                                       (5, 4, 5, 0.20, 'KG');
 
+
+ALTER TABLE dish
+    ADD COLUMN IF NOT EXISTS price NUMERIC(10,2);
+
 UPDATE dish SET price = 3500.00 WHERE id = 1;
 UPDATE dish SET price = 12000.00 WHERE id = 2;
-UPDATE dish SET price = NULL    WHERE id = 3;
+UPDATE dish SET price = null WHERE id = 3;
 UPDATE dish SET price = 8000.00 WHERE id = 4;
-UPDATE dish SET price = NULL    WHERE id = 5;
+UPDATE dish SET price = null WHERE id = 5;
