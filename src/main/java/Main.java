@@ -14,8 +14,8 @@ public class Main {
         DataRetriever dataRetriever = new DataRetriever(dbConnection);
 
         try {
-
             System.out.println("\n--- Test 1: Création de commande valide ---");
+            testValidOrderCreation(dataRetriever);
             testValidOrderCreation(dataRetriever);
 
 //            System.out.println("\n--- Test 2: Création avec table indisponible ---");
